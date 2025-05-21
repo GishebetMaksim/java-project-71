@@ -11,7 +11,7 @@ import java.util.Map;
 
 public class Differ {
     public static  String generate(String filePath1, String filePath2) throws Exception {
-        System.out.println(filePath1);
+        //System.out.println(filePath1);
 
         Map<String, String> map1 = jsonToMap(filePath1);
         Map<String, String> map2 = jsonToMap(filePath2);

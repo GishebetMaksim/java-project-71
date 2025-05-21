@@ -26,7 +26,7 @@ class App implements Callable<String> /*Runnable*/ {
 
     @Override
     public String call() throws Exception {
-        String resultString = Differ.generate(filepath1/*path1*/, filepath2/*path2*/);
+        String resultString = Differ.generate(filepath1, filepath2);
 
         System.out.println(resultString);
 

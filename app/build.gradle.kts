@@ -1,7 +1,9 @@
 plugins {
-    application
+    id("application")
     id("com.github.ben-manes.versions") version "0.52.0"
-    checkstyle
+    id("checkstyle")
+    id("jacoco")
+    id("org.sonarqube") version "6.2.0.5505"
 }
 
 application {
@@ -24,4 +26,17 @@ dependencies {
 
 tasks.test {
     useJUnitPlatform()
+    testLogging {
+        showStandardStreams = true
+    }
+}
+
+tasks.jacocoTestReport { reports { xml.required.set(true) } }
+
+sonar {
+    properties {
+        property("sonar.projectKey", "GishebetMaksim_java-project-71")
+        property("sonar.organization", "gishebetmaksim")
+        property("sonar.host.url", "https://sonarcloud.io")
+    }
 }
