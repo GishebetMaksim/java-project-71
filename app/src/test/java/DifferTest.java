@@ -1,5 +1,4 @@
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
@@ -34,9 +33,7 @@ public class DifferTest {
     @ValueSource(strings =  {"json", "yaml"})
     public void generateTestWihDefaultOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
-        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
-
-        System.out.println(expectedResultStylish.equals(generate(filepath1, filepath2)));
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
         assertEquals(expectedResultStylish.trim(), generate(filepath1, filepath2));
     }
@@ -45,7 +42,7 @@ public class DifferTest {
     @ValueSource(strings =  {"json", "yaml"})
     public void generateTestWihStylishOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
-        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
         assertEquals(expectedResultStylish, generate(filepath1, filepath2, "stylish"));
     }
@@ -54,7 +51,7 @@ public class DifferTest {
     @ValueSource(strings =  {"json", "yaml"})
     public void generateTestWihPlainOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
-        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
         assertEquals(expectedResultPlain, generate(filepath1, filepath2, "plain"));
     }
@@ -63,7 +60,7 @@ public class DifferTest {
     @ValueSource(strings =  {"json", "yaml"})
     public void generateTestWihJsonOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
-        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
         assertEquals(expectedResultJson, generate(filepath1, filepath2, "json"));
     }
