@@ -1,24 +1,70 @@
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static hexlet.code.Differ.generate;
 
 public class DifferTest {
+    static String expectedResultStylish;
+    static String expectedResultJson;
+    static String expectedResultPlain;
 
-    @Test
-    public void generateTest() throws Exception {
-        String expectedString = "- follow: false\n"
-                + "  host: hexlet.io\n"
-                + "- proxy: 123.234.53.22\n"
-                + "- timeout: 50\n"
-                + "+ timeout: 20\n"
-                + "+ verbose: true";
+    public static Path getAbsolutePath(String fileName) {
+        return Paths.get("./src/test/resources/fixtures/", fileName).toAbsolutePath().normalize();
+    }
 
-        String filepath1 = Paths.get("file1.json").toString();
-        String filepath2 = Paths.get("file2.json").toString();
+    public static String readFile(String fileName) throws IOException {
+        return Files.readString(getAbsolutePath(fileName)).trim();
+    }
+    @BeforeAll
+    public static void setup() throws IOException {
+        expectedResultStylish = readFile("stylish.txt").replace("\r", "");
+        expectedResultPlain = readFile("plain.txt").replace("\r", "");
+        expectedResultJson = readFile("JSON.json").replace("\r", "");
+    }
 
-        assertEquals(expectedString, generate(filepath1, filepath2));
+    @ParameterizedTest
+    @ValueSource(strings =  {"json", "yaml"})
+    public void generateTestWihDefaultOutput(String inputFormat) throws Exception {
+        String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
+
+        System.out.println(expectedResultStylish.equals(generate(filepath1, filepath2)));
+
+        assertEquals(expectedResultStylish.trim(), generate(filepath1, filepath2));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings =  {"json", "yaml"})
+    public void generateTestWihStylishOutput(String inputFormat) throws Exception {
+        String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
+
+        assertEquals(expectedResultStylish, generate(filepath1, filepath2, "stylish"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings =  {"json", "yaml"})
+    public void generateTestWihPlainOutput(String inputFormat) throws Exception {
+        String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
+
+        assertEquals(expectedResultPlain, generate(filepath1, filepath2, "plain"));
+    }
+
+    @ParameterizedTest
+    @ValueSource(strings =  {"json", "yaml"})
+    public void generateTestWihJsonOutput(String inputFormat) throws Exception {
+        String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
+        String filepath2 = getAbsolutePath("file2." + inputFormat).toString();;
+
+        assertEquals(expectedResultJson, generate(filepath1, filepath2, "json"));
     }
 }

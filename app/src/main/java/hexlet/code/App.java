@@ -11,13 +11,14 @@ import java.util.concurrent.Callable;
         mixinStandardHelpOptions = true,
         version = "gendiff 1.0",
         description = "Compares two configuration files and shows a difference.")
-class App implements Callable<String> /*Runnable*/ {
-    @Option(names = { "-f", "--format" }, paramLabel = "format", description = "output format [default: stylish]")
+class App implements Callable<String> {
+    @Option(names = { "-f", "--format" }, defaultValue = "stylish", paramLabel = "format",
+            description = "output format [default: stylish]")
     private String format;
     @Parameters(index = "0", description = "path to first file")
-    private static String filepath1;
+    private String filepath1;
     @Parameters(index = "1", description = "path to second file")
-    private static String filepath2;
+    private String filepath2;
 
     public static void main(String... args) {
         int exitCode = new CommandLine(new App()).execute(args);
@@ -26,7 +27,7 @@ class App implements Callable<String> /*Runnable*/ {
 
     @Override
     public String call() throws Exception {
-        String resultString = Differ.generate(filepath1, filepath2);
+        String resultString = Differ.generate(filepath1, filepath2, format);
 
         System.out.println(resultString);
 
