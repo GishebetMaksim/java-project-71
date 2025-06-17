@@ -1,32 +1,35 @@
 package hexlet.code.formatters;
 
+import hexlet.code.CompareResult;
+import hexlet.code.Status;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class StylishFormatter {
-    public static String stylish(List<Map<String, Object>> diff) throws Exception {
+    public static String stylish(List<CompareResult> diff) throws Exception {
         var resultStringsList = new ArrayList<String>() { };
         resultStringsList.add("{");
-        for (var map: diff) {
-            String status = (String) map.get("status");
+        for (var compareResult: diff) {
+            Status status = compareResult.getStatus();
 
             switch (status) {
-                case "unchanged":
-                    resultStringsList.add("    " + map.get("key") + ": " + map.get("old value"));
+                case Status.unchanged:
+                    resultStringsList.add("    " + compareResult.getKey() + ": " + compareResult.getOldValue());
                     break;
-                case "updated":
-                    resultStringsList.add("  - " + map.get("key") + ": " + map.get("old value"));
-                    resultStringsList.add("  + " + map.get("key") + ": " + map.get("new value"));
+                case Status.updated:
+                    resultStringsList.add("  - " + compareResult.getKey() + ": " + compareResult.getOldValue());
+                    resultStringsList.add("  + " + compareResult.getKey() + ": " + compareResult.getNewValue());
                     break;
-                case "added":
-                    resultStringsList.add("  + " + map.get("key") + ": " + map.get("new value"));
+                case Status.added:
+                    resultStringsList.add("  + " + compareResult.getKey() + ": " + compareResult.getNewValue());
                     break;
-                case "removed":
-                    resultStringsList.add("  - " + map.get("key") + ": " + map.get("old value"));
+                case Status.removed:
+                    resultStringsList.add("  - " + compareResult.getKey() + ": " + compareResult.getOldValue());
                     break;
                 default:
-                    throw new Exception("Unknown state.");
+                    throw new Exception("Unknown state: " + status);
             }
         }
         resultStringsList.add("}");

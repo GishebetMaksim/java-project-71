@@ -39,11 +39,6 @@ public class Differ {
         } else {
             format = filepath.substring(lastDotIndex);
         }
-
-        if (format.equals(".json") || format.equals(".yaml") || format.equals(".yml")) {
-            return format;
-        } else {
-            throw new Exception("Unknown format: " + format);
-        }
+        return format;
     }
 }

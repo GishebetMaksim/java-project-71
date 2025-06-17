@@ -7,16 +7,16 @@ import com.fasterxml.jackson.dataformat.yaml.YAMLFactory;
 import java.util.Map;
 
 public class Parser {
-    public static Map<String, Object> parseToMap(String fileContent, String fileFormat) throws Exception {
+    public static Map<String, Object> parseToMap(String data, String format) throws Exception {
         ObjectMapper mapper;
-        if (fileFormat.equals(".yaml") || fileFormat.equals(".yml")) {
+        if (format.equals(".yaml") || format.equals(".yml")) {
             mapper = new ObjectMapper(new YAMLFactory());
-        } else if (fileFormat.equals(".json")) {
+        } else if (format.equals(".json")) {
             mapper = new ObjectMapper(); // JSON по умолчанию
         } else {
-            throw new IllegalArgumentException("Unknown file format: " + fileFormat);
+            throw new IllegalArgumentException("Unknown file format: " + format);
         }
 
-        return mapper.readValue(fileContent, new TypeReference<Map<String, Object>>() { });
+        return mapper.readValue(data, new TypeReference<Map<String, Object>>() { });
     }
 }
