@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.AllArgsConstructor;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-//@AllArgsConstructor
+@AllArgsConstructor
 @Getter
 public class CompareResult {
     private String key;
@@ -13,17 +13,4 @@ public class CompareResult {
     @JsonProperty("new value")
     private Object newValue;
     private Status status;
-
-    public CompareResult(String key, Object oldValue, Status status) {
-        this.key = key;
-        this.oldValue = oldValue;
-        this.status = status;
-    }
-
-    public CompareResult(String key, Object oldValue, Object newValue, Status status) {
-        this.key = key;
-        this.oldValue = oldValue;
-        this.newValue = newValue;
-        this.status = status;
-    }
 }

@@ -5,7 +5,6 @@ import hexlet.code.Status;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 public class StylishFormatter {
     public static String stylish(List<CompareResult> diff) throws Exception {
