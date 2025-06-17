@@ -11,9 +11,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static hexlet.code.Differ.generate;
 
 public class DifferTest {
-    static String expectedResultStylish;
-    static String expectedResultJson;
-    static String expectedResultPlain;
+    private static String expectedResultStylish;
+    private static String expectedResultJson;
+    private static String expectedResultPlain;
 
     public static Path getAbsolutePath(String fileName) {
         return Paths.get("./src/test/resources/fixtures/", fileName).toAbsolutePath().normalize();
@@ -31,7 +31,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public void generateTestWihDefaultOutput(String inputFormat) throws Exception {
+    public static void generateTestWihDefaultOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
@@ -40,7 +40,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public void generateTestWihStylishOutput(String inputFormat) throws Exception {
+    public static void generateTestWihStylishOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
@@ -49,7 +49,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public void generateTestWihPlainOutput(String inputFormat) throws Exception {
+    public static void generateTestWihPlainOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
@@ -58,7 +58,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public void generateTestWihJsonOutput(String inputFormat) throws Exception {
+    public static void generateTestWihJsonOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
