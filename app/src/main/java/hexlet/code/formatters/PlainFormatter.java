@@ -40,8 +40,7 @@ public class PlainFormatter {
     private static String outputType(Object object) {
         if (object == null) {
             return "null";
-        }
-        if (object instanceof List || object instanceof Map) {
+        } else if (object instanceof List || object instanceof Map) {
             return "[complex value]";
         } else if (object instanceof String) {
             return "'" + object.toString() + "'";

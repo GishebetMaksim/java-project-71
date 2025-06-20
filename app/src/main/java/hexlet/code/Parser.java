@@ -14,7 +14,7 @@ public class Parser {
         } else if (format.equals(".json")) {
             mapper = new ObjectMapper(); // JSON по умолчанию
         } else {
-            throw new IllegalArgumentException("Unknown file format: " + format);
+            throw new IllegalArgumentException("Unknown format: " + format);
         }
 
         return mapper.readValue(data, new TypeReference<Map<String, Object>>() { });

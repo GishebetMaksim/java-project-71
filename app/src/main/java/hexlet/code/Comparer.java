@@ -1,9 +1,11 @@
 package hexlet.code;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.TreeSet;
+import java.util.Objects;
+
 
 public class Comparer {
 
@@ -24,7 +26,7 @@ public class Comparer {
                 compareResult = new CompareResult(key, value1, "", Status.removed);
             } else if (!map1.containsKey(key)) {
                 compareResult = new CompareResult(key, "", value2, Status.added);
-            } else if (compareObjects(value1, value2)) {
+            } else if (Objects.equals(value1, value2)) {
                 compareResult = new CompareResult(key, value1, value2, Status.unchanged);
             } else {
                 compareResult = new CompareResult(key, value1, value2, Status.updated);
@@ -32,15 +34,5 @@ public class Comparer {
             result.add(compareResult);
         }
         return result;
-    }
-
-    static boolean compareObjects(Object obj1, Object obj2) {
-        if (obj1 == null && obj2 == null) {
-            return true;
-        }
-        if (obj1 == null || obj2 == null) {
-            return false;
-        }
-        return obj1.equals(obj2);
     }
 }
