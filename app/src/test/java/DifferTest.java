@@ -31,7 +31,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public static void generateTestWihDefaultOutput(String inputFormat) throws Exception {
+    public void generateTestWihDefaultOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
@@ -40,7 +40,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public static void generateTestWihStylishOutput(String inputFormat) throws Exception {
+    public void generateTestWihStylishOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
@@ -49,7 +49,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public static void generateTestWihPlainOutput(String inputFormat) throws Exception {
+    public void generateTestWihPlainOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
@@ -58,7 +58,7 @@ public class DifferTest {
 
     @ParameterizedTest
     @ValueSource(strings =  {"json", "yaml"})
-    public static void generateTestWihJsonOutput(String inputFormat) throws Exception {
+    public void generateTestWihJsonOutput(String inputFormat) throws Exception {
         String filepath1 = getAbsolutePath("file1." + inputFormat).toString();
         String filepath2 = getAbsolutePath("file2." + inputFormat).toString();
 
