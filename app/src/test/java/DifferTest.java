@@ -10,7 +10,7 @@ import java.nio.file.Paths;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static hexlet.code.Differ.generate;
 
-public class DifferTest {
+public final class DifferTest {
     private static String expectedResultStylish;
     private static String expectedResultJson;
     private static String expectedResultPlain;
